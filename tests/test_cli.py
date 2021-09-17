@@ -1,10 +1,13 @@
 from click.testing import CliRunner
 from cli import cli
+from mock import Mock, patch
+from travelperk_http_python.api.travelperk import TravelPerk
 
 
 class TestCli:
     def setup(self):
         self.runner = CliRunner()
+        self.travelperk = Mock(spec=TravelPerk)
 
     def test_listing_all_sections(self):
         result = self.runner.invoke(cli, [])
@@ -24,15 +27,30 @@ class TestCli:
         assert "all" in result.output
         assert "get" in result.output
 
-    def test_listing_all_cost_centers(self):
+    @patch("travelperk_cli.cost_centers.commands.get_backend")
+    def test_listing_all_cost_centers(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.cost_centers.return_value.cost_centers.return_value.all.return_value = (
+            "All cost centers list"
+        )
         result = self.runner.invoke(cli, ["cost-centers", "all"])
         assert result.exit_code == 0
-        assert "Listing all cost centers" in result.output
+        assert "All cost centers list" in result.output
 
-    def test_getting_details_of_a_cost_center(self):
-        result = self.runner.invoke(cli, ["cost-centers", "get"])
+    @patch("travelperk_cli.cost_centers.commands.get_backend")
+    def test_getting_details_of_a_cost_center(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.cost_centers.return_value.cost_centers.return_value.get.return_value = (
+            "Cost center details"
+        )
+        cost_center_id = "some_id"
+        result = self.runner.invoke(
+            cli, ["cost-centers", "get", "--id", cost_center_id]
+        )
         assert result.exit_code == 0
-        assert "Details of a cost center" in result.output
+        assert "Cost center details" in result.output
+        # TODO
+        # self.travelperk.cost_centers.cost_centers.get.assert_called_once_with(cost_center_id)
 
     # Expenses
     def test_listing_expenses_operations(self):
@@ -111,22 +129,45 @@ class TestCli:
         assert "delete" in result.output
         assert "test" in result.output
 
-    def test_listing_all_webhooks(self):
+    @patch("travelperk_cli.webhooks.commands.get_backend")
+    def test_listing_all_webhooks(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.webhooks.return_value.webhooks.return_value.all.return_value = (
+            "All webhooks list"
+        )
         result = self.runner.invoke(cli, ["webhooks", "all"])
         assert result.exit_code == 0
-        assert "Details of a webhook" in result.output
+        assert "All webhooks list" in result.output
 
-    def test_getting_details_of_a_webhook(self):
-        result = self.runner.invoke(cli, ["webhooks", "get"])
+    @patch("travelperk_cli.webhooks.commands.get_backend")
+    def test_getting_details_of_a_webhook(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.webhooks.return_value.webhooks.return_value.get.return_value = (
+            "Details of a webhook"
+        )
+        webhook_id = "some_id"
+        result = self.runner.invoke(cli, ["webhooks", "get", "--id", webhook_id])
         assert result.exit_code == 0
         assert "Details of a webhook" in result.output
 
-    def test_deleting_a_webhook(self):
-        result = self.runner.invoke(cli, ["webhooks", "delete"])
+    @patch("travelperk_cli.webhooks.commands.get_backend")
+    def test_deleting_a_webhook(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.webhooks.return_value.webhooks.return_value.delete.return_value = (
+            "Delete webhook response"
+        )
+        webhook_id = "some_id"
+        result = self.runner.invoke(cli, ["webhooks", "delete", "--id", webhook_id])
         assert result.exit_code == 0
-        assert "Delete a webhook" in result.output
+        assert "Delete webhook response" in result.output
 
-    def test_testing_a_webhook(self):
-        result = self.runner.invoke(cli, ["webhooks", "test"])
+    @patch("travelperk_cli.webhooks.commands.get_backend")
+    def test_testingm_a_webhook(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.webhooks.return_value.webhooks.return_value.test.return_value = (
+            "Testing webhook response"
+        )
+        webhook_id = "some_id"
+        result = self.runner.invoke(cli, ["webhooks", "test", "--id", webhook_id])
         assert result.exit_code == 0
-        assert "Test a webhook" in result.output
+        assert "Testing webhook response" in result.output
