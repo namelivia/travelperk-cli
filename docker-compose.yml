@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  travelperk-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: travelperk-cli
+    entrypoint: "pipenv run pytest"
+    tty: false
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "4444:4444"
