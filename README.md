@@ -10,7 +10,7 @@ This is in a ver WIP stage and not very usable
 
 ## About
 
-This is an unofficial console line tool for acessing the [TravelPerk official Web API](https://developers.travelperk.com). It is designed so you can query and retrieve all data hold on their platform and accessible through the API form the command line.
+This is an unofficial command line tool for acessing the [TravelPerk official Web API](https://developers.travelperk.com). It is designed so you can query and retrieve all data hold on their platform and accessible through the API form the command line.
 
 ## Getting started
 
