@@ -2,7 +2,7 @@
 [![tag](https://img.shields.io/github/tag/namelivia/travelperk-cli.svg)](https://github.com/namelivia/travelperk-cli/releases)[![build](https://github.com/namelivia/travelperk-cli/actions/workflows/build.yml/badge.svg)](https://github.com/namelivia/travelperk-cli/actions/workflows/build.yml)[![Lint](https://github.com/namelivia/travelperk-cli/actions/workflows/black.yml/badge.svg)](https://github.com/namelivia/travelperk-cli/actions/workflows/black.yml)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/1571416/118358121-b78de000-b57d-11eb-9987-f750ed530d83.png" alt="TravelPerk Cli" />
+  <img src="https://user-images.githubusercontent.com/1571416/133829819-5fc4a27d-f943-47d1-86c4-72e66a19f5cc.png" alt="TravelPerk Cli" />
 </p>
 
 ## Disclaimer
