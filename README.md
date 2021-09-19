@@ -12,6 +12,63 @@ This is in a ver WIP stage and not very usable
 
 This is an unofficial command line tool for acessing the [TravelPerk official Web API](https://developers.travelperk.com). It is designed so you can query and retrieve all data hold on their platform and accessible through the API form the command line.
 
+## Operations included
+
+### Expenses
+
+#### Invoices
+
+ - List all invoices :heavy_check_mark:
+ - Retrieve an invoice :heavy_check_mark:
+ - Retrieve invoice PDF :heavy_multiplication_x:
+ - List all invoice lines :heavy_check_mark:
+
+#### Invoice Profiles
+ - List all invoice profiles :heavy_check_mark:
+
+### SCIM
+ - List users :heavy_check_mark:
+ - Create a new user :heavy_multiplication_x:
+ - Retrieve a user :heavy_check_mark:
+ - Replace a user :heavy_multiplication_x:
+ - Delete a user :heavy_check_mark:
+
+#### Discovery
+ - Service provider configuration :heavy_check_mark:
+ - List resource types :heavy_check_mark:
+ - List all schemas :heavy_check_mark:
+ - User schema details :heavy_check_mark:
+ - Enterprise user schema details :heavy_check_mark:
+
+### Webhooks
+ - List all webhooks :heavy_check_mark:
+ - Create a webhook :heavy_check_mark:
+ - Retrieve a webhook :heavy_check_mark:
+ - Update a webhook :heavy_multiplication_x:
+ - Test a webhook :heavy_check_mark:
+ - Delete a webhook :heavy_check_mark:
+
+### TravelSafe
+ - Get travel restrictions :heavy_multiplication_x:
+ - Get local summary :heavy_multiplication_x:
+ - Get airline safety measures :heavy_multiplication_x:
+ - Get location types :heavy_multiplication_x:
+
+### Cost Centers
+ - List cost centers :heavy_check_mark:
+ - Creating a cost center :heavy_check_mark:
+ - Cost center details :heavy_check_mark:
+ - Update a cost center :heavy_multiplication_x:
+ - Bulk update cost centers :heavy_multiplication_x:
+ - Set users to a cost center :heavy_multiplication_x:
+ 
+### Trips
+ - List trips :heavy_check_mark:
+ - List bookings :heavy_check_mark:
+
+### Users (non SCIM)
+ - List users :heavy_check_mark:
+
 ## Getting started
 
 Before getting started retrieving querying information from the TravelPerk Web API you first need to [get an API Key](https://developers.travelperk.com/reference#authentication).

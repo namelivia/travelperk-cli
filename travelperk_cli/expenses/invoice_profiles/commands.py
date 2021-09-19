@@ -9,7 +9,7 @@ def invoice_profiles():
 
 @click.command()
 def all():
-    click.echo(get_backend().expenes().invoice_profiles().all(id))
+    click.echo(get_backend().expenses().invoice_profiles().query().get())
 
 
 invoice_profiles.add_command(all)
