@@ -21,3 +21,4 @@ allow_prereleases = true
 [packages]
 click = "*"
 travelperk-http-python = "*"
+pydantic = "*"

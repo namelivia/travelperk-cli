@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "751680c75cccbba8bef3c80690121db3bc63bfc798f3705780e0cbe26cf0f585"
+            "sha256": "0ef2daa97d6eafb67ab315dddd2c15db25a5d5f3f25c098d55c5c60013ee6e3f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -79,6 +79,7 @@
                 "sha256:ea5cb40a3b23b3265f6325727ddfc45141b08ed665458be8c6285e7b85bd73a1",
                 "sha256:fec866a0b59f372b7e776f2d7308511784dace622e0992a0b59ea3ccee0ae833"
             ],
+            "index": "pypi",
             "version": "==1.8.2"
         },
         "pyhumps": {
@@ -112,10 +113,10 @@
         },
         "travelperk-python-api-types": {
             "hashes": [
-                "sha256:7986d7e688265603712142b373fc57bc404dd27746779015a166f18cc510bc53",
-                "sha256:896aed152d32783b67351788a733849b309dfe4e2baa4de752a07837ba26fa47"
+                "sha256:2ee11438a1e31b87f0e41b32dda87166886767d734f8979c03998466a13a1935",
+                "sha256:43d769aa2470f00058f4df526e5f7e62a856ef9d03a803607dd0ef99514cb74e"
             ],
-            "version": "==1.0.31"
+            "version": "==1.0.32"
         },
         "typing-extensions": {
             "hashes": [
