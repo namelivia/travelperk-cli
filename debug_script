@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#invoices
+echo 'all invoices'
+pipenv run python cli.py expenses invoices all > /tmp/all_invoices
+echo 'invoice'
+pipenv run python cli.py expenses invoices get --id some_test_invoice_id > /tmp/invoice
+echo 'invoice lines'
+pipenv run python cli.py expenses invoices lines > /tmp/invoice_lines
+
+#invoice profiles
+echo 'invoice profiles'
+pipenv run python cli.py expenses invoice-profiles all > /tmp/invoice_profiles
+
+#cost centers
+echo 'all cost centers'
+pipenv run python cli.py cost-centers all > /tmp/cost_centers
+echo 'cost center'
+pipenv run python cli.py cost-centers get --id 85027 > /tmp/cost_center
+
+#scim users
+echo 'all scim'
+pipenv run python cli.py scim users all > /tmp/all_scim
+echo 'user'
+pipenv run python cli.py scim users get --id some_user_id > /tmp/scim_user
+
+#discovery
+echo 'schemas'
+pipenv run python cli.py scim discovery schemas > /tmp/schemas
+echo 'user schema'
+pipenv run python cli.py scim discovery user-schema > /tmp/user_schemas
+echo 'enterprise schema'
+pipenv run python cli.py scim discovery enterprise-schema > /tmp/enteprise_schemas
+echo 'resource types'
+pipenv run python cli.py scim discovery resource-types > /tmp/resource_types
+
+#webhooks
+echo 'all webhooks'
+pipenv run python cli.py webhooks all > /tmp/all_webhooks
+echo 'webhook'
+pipenv run python cli.py webhooks get --id b4ab65a2-31b6-4cf8-9cfb-f0788c47f7c7 > /tmp/webhook
+echo 'test webhook'
+pipenv run python cli.py webhooks test --id b4ab65a2-31b6-4cf8-9cfb-f0788c47f7c7 > /tmp/test_webhook
+
+#trips
+echo 'all trips'
+pipenv run python cli.py trips all > /tmp/all_trips
+echo 'all bookings'
+pipenv run python cli.py trips bookings > /tmp/all_bookings
+
+#users
+echo 'all users'
+pipenv run python cli.py users all > /tmp/all_users

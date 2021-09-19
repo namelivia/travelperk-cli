@@ -1,8 +1,10 @@
 import click
+import json
 from travelperk_cli.travelperk.travelperk import get_backend
 from travelperk_http_python.exceptions.travelperk_http_exception import (
     TravelPerkHttpException,
 )
+from pydantic.json import pydantic_encoder
 
 
 @click.group()
@@ -13,7 +15,12 @@ def webhooks():
 @click.command()
 def all():
     try:
-        click.echo(get_backend().webhooks().webhooks().all())
+        click.echo(
+            json.dumps(
+                click.echo(get_backend().webhooks().webhooks().all()),
+                default=pydantic_encoder,
+            )
+        )
     except TravelPerkHttpException as e:
         click.echo(click.style(str(e), fg="red"))
 
@@ -25,7 +32,12 @@ webhooks.add_command(all)
 @click.option("--id", help="The id for the webhook.", required=True)
 def get(id):
     try:
-        click.echo(get_backend().webhooks().webhooks().get(id))
+        click.echo(
+            json.dumps(
+                click.echo(get_backend().webhooks().webhooks().get(id)),
+                default=pydantic_encoder,
+            )
+        )
     except TravelPerkHttpException as e:
         click.echo(click.style(str(e), fg="red"))
 
@@ -40,10 +52,13 @@ webhooks.add_command(get)
 def create(name, url, secret):
     try:
         click.echo(
-            get_backend()
-            .webhooks()
-            .webhooks()
-            .create(name, url, secret, ["invoice.issued"])  # TODO: Allow events
+            json.dumps(
+                get_backend()
+                .webhooks()
+                .webhooks()
+                .create(name, url, secret, ["invoice.issued"]),  # TODO: Allow events
+                default=pydantic_encoder,
+            )
         )
     except TravelPerkHttpException as e:
         click.echo(click.style(str(e), fg="red"))
@@ -56,7 +71,12 @@ webhooks.add_command(create)
 @click.option("--id", help="The id for the webhook.", required=True)
 def delete(id):
     try:
-        click.echo(get_backend().webhooks().webhooks().delete(id))
+        click.echo(
+            json.dumps(
+                click.echo(get_backend().webhooks().webhooks().delete(id)),
+                default=pydantic_encoder,
+            )
+        )
     except TravelPerkHttpException as e:
         click.echo(click.style(str(e), fg="red"))
 
@@ -68,7 +88,9 @@ webhooks.add_command(delete)
 @click.option("--id", help="The id for the webhook.", required=True)
 def test(id):
     try:
-        click.echo(get_backend().webhooks().webhooks().test(id))
+        click.echo(
+            click.echo(get_backend().webhooks().webhooks().test(id)),
+        )
     except TravelPerkHttpException as e:
         click.echo(click.style(str(e), fg="red"))
 

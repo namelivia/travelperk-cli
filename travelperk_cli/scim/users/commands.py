@@ -1,5 +1,10 @@
 import click
+import json
 from travelperk_cli.travelperk.travelperk import get_backend
+from travelperk_http_python.exceptions.travelperk_http_exception import (
+    TravelPerkHttpException,
+)
+from pydantic.json import pydantic_encoder
 
 
 @click.group()
@@ -9,7 +14,15 @@ def users():
 
 @click.command()
 def all():
-    click.echo(get_backend().scim().users().query().get())
+    try:
+        click.echo(
+            json.dumps(
+                get_backend().scim().users().query().get(),
+                default=pydantic_encoder,
+            )
+        )
+    except TravelPerkHttpException as e:
+        click.echo(click.style(str(e), fg="red"))
 
 
 users.add_command(all)
@@ -18,7 +31,15 @@ users.add_command(all)
 @click.command()
 @click.option("--id", help="The id for the user.", required=True)
 def get(id):
-    click.echo(get_backend().scim().users().get(id))
+    try:
+        click.echo(
+            json.dumps(
+                get_backend().scim().users().get(id),
+                default=pydantic_encoder,
+            )
+        )
+    except TravelPerkHttpException as e:
+        click.echo(click.style(str(e), fg="red"))
 
 
 users.add_command(get)
@@ -27,7 +48,15 @@ users.add_command(get)
 @click.command()
 @click.option("--id", help="The id for the user.", required=True)
 def delete(id):
-    click.echo(get_backend().scim().users().delete(id))
+    try:
+        click.echo(
+            json.dumps(
+                get_backend().scim().users().delete(id),
+                default=pydantic_encoder,
+            )
+        )
+    except TravelPerkHttpException as e:
+        click.echo(click.style(str(e), fg="red"))
 
 
 users.add_command(delete)
