@@ -52,6 +52,21 @@ class TestCli:
         # TODO
         # asserting the function was called with the id
 
+    @patch("travelperk_cli.cost_centers.commands.get_backend")
+    def test_creating_a_cost_center(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.cost_centers.return_value.cost_centers.return_value.create.return_value = (
+            "New cost center"
+        )
+        cost_center_name = "new_cost_center"
+        result = self.runner.invoke(
+            cli, ["cost-centers", "create", "--name", cost_center_name]
+        )
+        assert result.exit_code == 0
+        assert "New cost center" in result.output
+        # TODO
+        # asserting the function was called with the id
+
     # Expenses
     def test_listing_expenses_operations(self):
         result = self.runner.invoke(cli, ["expenses"])
