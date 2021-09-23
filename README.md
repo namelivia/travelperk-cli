@@ -49,10 +49,10 @@ This is an unofficial command line tool for acessing the [TravelPerk official We
  - Delete a webhook :heavy_check_mark:
 
 ### TravelSafe
- - Get travel restrictions :heavy_multiplication_x:
- - Get local summary :heavy_multiplication_x:
- - Get airline safety measures :heavy_multiplication_x:
- - Get location types :heavy_multiplication_x:
+ - Get travel restrictions :heavy_check_mark:
+ - Get local summary :heavy_check_mark:
+ - Get airline safety measures :heavy_check_mark:
+ - Get location types :heavy_check_mark:
 
 ### Cost Centers
  - List cost centers :heavy_check_mark:
