@@ -2,12 +2,21 @@ from click.testing import CliRunner
 from cli import cli
 from mock import Mock, patch
 from travelperk_http_python.api.travelperk import TravelPerk
+from travelperk_cli.travelperk.travelperk import get_backend
 
 
 class TestCli:
     def setup(self):
         self.runner = CliRunner()
         self.travelperk = Mock(spec=TravelPerk)
+
+    @patch("travelperk_cli.travelperk.travelperk.build")
+    def test_testing_a_backend_instance(self, build_mock):
+        build_mock.return_value = self.travelperk
+        backend = get_backend()
+        assert backend == self.travelperk
+        # TODO
+        # asserting the function parameters
 
     def test_listing_all_sections(self):
         result = self.runner.invoke(cli, [])
