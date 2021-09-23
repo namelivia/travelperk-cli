@@ -1,5 +1,26 @@
 #!/bin/bash
 
+#travelsafe
+echo 'travel restrictions'
+pipenv run python cli.py travelsafe restrictions \
+    --origin ES \
+    --destination FR \
+    --origin-type country_code \
+    --destination-type country_code \
+    --date 2021-09-10 \
+    > /tmp/restrictions
+
+echo 'local summary'
+ pipenv run python cli.py travelsafe local-summary \
+    --location ES \
+    --location-type country_code \
+   > /tmp/summary
+
+echo 'airline meansures'
+ pipenv run python cli.py travelsafe airline-measures \
+    --code LH \
+   > /tmp/summary
+
 #invoices
 echo 'all invoices'
 pipenv run python cli.py expenses invoices all > /tmp/all_invoices
