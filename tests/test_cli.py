@@ -158,11 +158,41 @@ class TestCli:
         assert "all" in result.output
         assert "bookings" in result.output
 
+    @patch("travelperk_cli.trips.commands.get_backend")
+    def test_listing_all_trips(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.trips.return_value.trips.return_value.query.return_value.get.return_value = (
+            "All trips list"
+        )
+        result = self.runner.invoke(cli, ["trips", "all"])
+        assert result.exit_code == 0
+        assert "All trips list" in result.output
+
+    @patch("travelperk_cli.trips.commands.get_backend")
+    def test_listing_all_bookings(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.trips.return_value.bookings.return_value.query.return_value.get.return_value = (
+            "All bookings list"
+        )
+        result = self.runner.invoke(cli, ["trips", "bookings"])
+        assert result.exit_code == 0
+        assert "All bookings list" in result.output
+
     # Users
     def test_listing_users_operations(self):
         result = self.runner.invoke(cli, ["users"])
         assert result.exit_code == 0
         assert "all" in result.output
+
+    @patch("travelperk_cli.users.commands.get_backend")
+    def test_listing_all_users(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.users.return_value.users.return_value.query.return_value.get.return_value = (
+            "All users list"
+        )
+        result = self.runner.invoke(cli, ["users", "all"])
+        assert result.exit_code == 0
+        assert "All users list" in result.output
 
     # Webhooks
     def test_listing_webhook_operations(self):
