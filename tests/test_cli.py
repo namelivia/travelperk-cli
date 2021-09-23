@@ -143,6 +143,58 @@ class TestCli:
         assert "user-schema" in result.output
         assert "enterprise-schema" in result.output
 
+    @patch("travelperk_cli.scim.discovery.commands.get_backend")
+    def test_getting_service_provider_configuration(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.discovery.return_value.service_provider_config.return_value = (
+            "Service provider configuration"
+        )
+        result = self.runner.invoke(
+            cli, ["scim", "discovery", "service-provider-configuration"]
+        )
+        assert result.exit_code == 0
+        assert "Service provider configuration" in result.output
+
+    @patch("travelperk_cli.scim.discovery.commands.get_backend")
+    def test_getting_resource_types(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.discovery.return_value.resource_types.return_value = (
+            "Resource types"
+        )
+        result = self.runner.invoke(cli, ["scim", "discovery", "resource-types"])
+        assert result.exit_code == 0
+        assert "Resource types" in result.output
+
+    @patch("travelperk_cli.scim.discovery.commands.get_backend")
+    def test_getting_schemas(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.discovery.return_value.schemas.return_value = (
+            "List of schemas"
+        )
+        result = self.runner.invoke(cli, ["scim", "discovery", "schemas"])
+        assert result.exit_code == 0
+        assert "List of schemas" in result.output
+
+    @patch("travelperk_cli.scim.discovery.commands.get_backend")
+    def test_getting_user_schema(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.discovery.return_value.user_schema.return_value = (
+            "User schema"
+        )
+        result = self.runner.invoke(cli, ["scim", "discovery", "user-schema"])
+        assert result.exit_code == 0
+        assert "User schema" in result.output
+
+    @patch("travelperk_cli.scim.discovery.commands.get_backend")
+    def test_getting_enterprise_schema(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.discovery.return_value.enterprise_user_schema.return_value = (
+            "Enterprise schema"
+        )
+        result = self.runner.invoke(cli, ["scim", "discovery", "enterprise-schema"])
+        assert result.exit_code == 0
+        assert "Enterprise schema" in result.output
+
     # TravelSafe
     def test_listing_travelsafe_operations(self):
         result = self.runner.invoke(cli, ["travelsafe"])
@@ -224,6 +276,8 @@ class TestCli:
         result = self.runner.invoke(cli, ["webhooks", "get", "--id", webhook_id])
         assert result.exit_code == 0
         assert "Details of a webhook" in result.output
+        # TODO
+        # asserting the function was called with the id
 
     @patch("travelperk_cli.webhooks.commands.get_backend")
     def test_deleting_a_webhook(self, get_backend_mock):
@@ -235,6 +289,8 @@ class TestCli:
         result = self.runner.invoke(cli, ["webhooks", "delete", "--id", webhook_id])
         assert result.exit_code == 0
         assert "Delete webhook response" in result.output
+        # TODO
+        # asserting the function was called with the id
 
     @patch("travelperk_cli.webhooks.commands.get_backend")
     def test_testingm_a_webhook(self, get_backend_mock):
@@ -246,3 +302,5 @@ class TestCli:
         result = self.runner.invoke(cli, ["webhooks", "test", "--id", webhook_id])
         assert result.exit_code == 0
         assert "Testing webhook response" in result.output
+        # TODO
+        # asserting the function was called with the id
