@@ -59,7 +59,9 @@ class TestCli:
         assert result.exit_code == 0
         assert "Cost center details" in result.output
         # TODO
-        # asserting the function was called with the id
+        self.travelperk.cost_centers.return_value.cost_centers.return_value.get.assert_called_once_with(
+            cost_center_id
+        )
 
     @patch("travelperk_cli.cost_centers.commands.get_backend")
     def test_creating_a_cost_center(self, get_backend_mock):
