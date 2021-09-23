@@ -414,7 +414,31 @@ class TestCli:
         # asserting the function was called with the id
 
     @patch("travelperk_cli.webhooks.commands.get_backend")
-    def test_testingm_a_webhook(self, get_backend_mock):
+    def test_creating_a_webhook(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.webhooks.return_value.webhooks.return_value.create.return_value = (
+            "New webhook"
+        )
+        result = self.runner.invoke(
+            cli,
+            [
+                "webhooks",
+                "create",
+                "--name",
+                "Some name",
+                "--url",
+                "Some url",
+                "--secret",
+                "Some secret",
+            ],
+        )
+        assert result.exit_code == 0
+        assert "New webhook" in result.output
+        # TODO
+        # asserting the function was called with the id
+
+    @patch("travelperk_cli.webhooks.commands.get_backend")
+    def test_testing_a_webhook(self, get_backend_mock):
         get_backend_mock.return_value = self.travelperk
         self.travelperk.webhooks.return_value.webhooks.return_value.test.return_value = (
             "Testing webhook response"
