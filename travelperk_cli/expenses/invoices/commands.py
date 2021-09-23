@@ -29,7 +29,7 @@ invoices.add_command(all)
 
 
 @click.command()
-@click.option("--id", help="The id for the webhook.", required=True)
+@click.option("--id", help="The id for the invoice.", required=True)
 def get(id):
     try:
         click.echo(

@@ -50,7 +50,7 @@ class TestCli:
         assert result.exit_code == 0
         assert "Cost center details" in result.output
         # TODO
-        # self.travelperk.cost_centers.cost_centers.get.assert_called_once_with(cost_center_id)
+        # asserting the function was called with the id
 
     # Expenses
     def test_listing_expenses_operations(self):
@@ -65,6 +65,16 @@ class TestCli:
         assert result.exit_code == 0
         assert "all" in result.output
 
+    @patch("travelperk_cli.expenses.invoice_profiles.commands.get_backend")
+    def test_listing_all_invoice_profiles(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.expenses.return_value.invoice_profiles.return_value.query.return_value.get.return_value = (
+            "All invoice profiles list"
+        )
+        result = self.runner.invoke(cli, ["expenses", "invoice-profiles", "all"])
+        assert result.exit_code == 0
+        assert "All invoice profiles list" in result.output
+
     # Invoices
     def test_listing_invoices_operations(self):
         result = self.runner.invoke(cli, ["expenses", "invoices"])
@@ -72,6 +82,41 @@ class TestCli:
         assert "all" in result.output
         assert "get" in result.output
         assert "lines" in result.output
+
+    @patch("travelperk_cli.expenses.invoices.commands.get_backend")
+    def test_listing_all_invoices(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.expenses.return_value.invoices.return_value.query.return_value.get.return_value = (
+            "All invoices list"
+        )
+        result = self.runner.invoke(cli, ["expenses", "invoices", "all"])
+        assert result.exit_code == 0
+        assert "All invoices list" in result.output
+
+    @patch("travelperk_cli.expenses.invoices.commands.get_backend")
+    def test_getting_details_of_an_invoice(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.expenses.return_value.invoices.return_value.get.return_value = (
+            "Invoice details"
+        )
+        invoice_id = "some_id"
+        result = self.runner.invoke(
+            cli, ["expenses", "invoices", "get", "--id", invoice_id]
+        )
+        assert result.exit_code == 0
+        assert "Invoice details" in result.output
+        # TODO
+        # asserting the function was called with the id
+
+    @patch("travelperk_cli.expenses.invoices.commands.get_backend")
+    def test_listing_all_invoice_lines(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.expenses.return_value.invoices.return_value.lines_query.return_value.get.return_value = (
+            "All invoice lines list"
+        )
+        result = self.runner.invoke(cli, ["expenses", "invoices", "lines"])
+        assert result.exit_code == 0
+        assert "All invoice lines list" in result.output
 
     # SCIM
     def test_listing_scim_operations(self):
