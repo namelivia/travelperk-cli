@@ -133,6 +133,42 @@ class TestCli:
         assert "get" in result.output
         assert "delete" in result.output
 
+    @patch("travelperk_cli.scim.users.commands.get_backend")
+    def test_listing_all_users_scim(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.users.return_value.query.return_value.get.return_value = (
+            "All users list"
+        )
+        result = self.runner.invoke(cli, ["scim", "users", "all"])
+        assert result.exit_code == 0
+        assert "All users list" in result.output
+
+    @patch("travelperk_cli.scim.users.commands.get_backend")
+    def test_getting_details_of_a_user(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.users.return_value.get.return_value = (
+            "Details of a user"
+        )
+        user_id = "some_id"
+        result = self.runner.invoke(cli, ["scim", "users", "get", "--id", user_id])
+        assert result.exit_code == 0
+        assert "Details of a user" in result.output
+        # TODO
+        # asserting the function was called with the id
+
+    @patch("travelperk_cli.scim.users.commands.get_backend")
+    def test_deleting_a_user(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.scim.return_value.users.return_value.delete.return_value = (
+            "Delete user response"
+        )
+        user_id = "some_id"
+        result = self.runner.invoke(cli, ["scim", "users", "delete", "--id", user_id])
+        assert result.exit_code == 0
+        assert "Delete user response" in result.output
+        # TODO
+        # asserting the function was called with the id
+
     # Discovery
     def test_listing_discovery_operations(self):
         result = self.runner.invoke(cli, ["scim", "discovery"])
@@ -202,6 +238,76 @@ class TestCli:
         assert "restrictions" in result.output
         assert "local-summary" in result.output
         assert "airline-measures" in result.output
+
+    @patch("travelperk_cli.travelsafe.commands.get_backend")
+    def test_getting_restrictions(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.travelsafe.return_value.travelsafe.return_value.travel_restrictions.return_value = (
+            "Travel restrictions"
+        )
+        result = self.runner.invoke(
+            cli,
+            [
+                "travelsafe",
+                "restrictions",
+                "--origin",
+                "FR",
+                "--origin-type",
+                "country_code",
+                "--destination",
+                "ES",
+                "--destination-type",
+                "country_code",
+                "--date",
+                "2020-05-02",
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Travel restrictions" in result.output
+        # TODO
+        # asserting the function was called with the id
+
+    @patch("travelperk_cli.travelsafe.commands.get_backend")
+    def test_getting_local_summary(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.travelsafe.return_value.travelsafe.return_value.local_summary.return_value = (
+            "Local Summary"
+        )
+        result = self.runner.invoke(
+            cli,
+            [
+                "travelsafe",
+                "local-summary",
+                "--location",
+                "FR",
+                "--location-type",
+                "country_code",
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Local Summary" in result.output
+        # TODO
+        # asserting the function was called with the id
+
+    @patch("travelperk_cli.travelsafe.commands.get_backend")
+    def test_getting_airline_measures(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.travelsafe.return_value.travelsafe.return_value.airline_safety_measures.return_value = (
+            "Airline Measures"
+        )
+        result = self.runner.invoke(
+            cli,
+            [
+                "travelsafe",
+                "airline-measures",
+                "--code",
+                "LH",
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Airline Measures" in result.output
+        # TODO
+        # asserting the function was called with the id
 
     # Trips
     def test_listing_trips_operations(self):
