@@ -379,10 +379,10 @@
         },
         "pudb": {
             "hashes": [
-                "sha256:309ee82b45a0ffca0bc4c7f521fd3e357589c764f339bdf9dcabb7ad40692d6e"
+                "sha256:878b19931706b33a20478b0aa2c8cfe40fa173f111d8f19617800fe5febe265c"
             ],
             "index": "pypi",
-            "version": "==2021.1"
+            "version": "==2021.2"
         },
         "py": {
             "hashes": [
@@ -556,6 +556,12 @@
                 "sha256:588bee9c1cb208d0906a9f73c613d2bd32c3ed3702012f51efe318a3f2127eae"
             ],
             "version": "==2.1.2"
+        },
+        "urwid-readline": {
+            "hashes": [
+                "sha256:018020cbc864bb5ed87be17dc26b069eae2755cb29f3a9c569aac3bded1efaf4"
+            ],
+            "version": "==0.13"
         },
         "virtualenv": {
             "hashes": [
