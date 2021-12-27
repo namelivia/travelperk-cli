@@ -108,19 +108,19 @@
         },
         "travelperk-http-python": {
             "hashes": [
-                "sha256:0134abe0d38bb7dfb6ace280db22844159a5d35f0c613fa284d8e84b848ca29f",
-                "sha256:609fcfb47a3ddaaaa55a0d04a3403331b507fe4c748544a62a2ef10b9a4ff01d"
+                "sha256:74d3538a543a8d088f4938a3f366a80136b2bb5d26aca933b668a873b1df6029",
+                "sha256:d5ea35e1c1e201237c3c0337e419bb39565be265f5a84ac571868e66cdeb510a"
             ],
             "index": "pypi",
-            "version": "==1.0.9"
+            "version": "==1.0.16"
         },
         "travelperk-python-api-types": {
             "hashes": [
-                "sha256:2ee11438a1e31b87f0e41b32dda87166886767d734f8979c03998466a13a1935",
-                "sha256:43d769aa2470f00058f4df526e5f7e62a856ef9d03a803607dd0ef99514cb74e"
+                "sha256:6d5045b5461844ed704d2f4e8b56d651d4e7773ebae47bc5c863250f119fcd15",
+                "sha256:725688755aa06096110671e0fd16d2675145de4dbf1631e660445a893c21150b"
             ],
             "markers": "python_version >= '3.6' and python_version < '4'",
-            "version": "==1.0.32"
+            "version": "==1.0.34"
         },
         "typing-extensions": {
             "hashes": [
@@ -206,7 +206,7 @@
         },
         "coverage": {
             "extras": [
-
+                "toml"
             ],
             "hashes": [
                 "sha256:01774a2c2c729619760320270e42cd9e797427ecfddd32c2a7b639cdc481f3c0",
@@ -262,18 +262,18 @@
         },
         "distlib": {
             "hashes": [
-                "sha256:c8b54e8454e5bf6237cc84c20e8264c3e991e824ef27e8f1e81049867d861e31",
-                "sha256:d982d0751ff6eaaab5e2ec8e691d949ee80eddf01a62eaa96ddb11531fe16b05"
+                "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b",
+                "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"
             ],
-            "version": "==0.3.3"
+            "version": "==0.3.4"
         },
         "filelock": {
             "hashes": [
-                "sha256:2e139a228bcf56dd8b2274a65174d005c4a6b68540ee0bdbb92c76f43f29f7e8",
-                "sha256:93d512b32a23baf4cac44ffd72ccf70732aeff7b8050fcaf6d3ec406d954baf4"
+                "sha256:38b4f4c989f9d06d44524df1b24bd19e167d851f19b50bf3e3559952dddc5b80",
+                "sha256:cf0fc6a2f8d26bd900f19bf33915ca70ba4dd8c56903eeb14e1e7a2fd7590146"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==3.4.0"
+            "markers": "python_version >= '3.7'",
+            "version": "==3.4.2"
         },
         "identify": {
             "hashes": [
@@ -353,11 +353,11 @@
         },
         "platformdirs": {
             "hashes": [
-                "sha256:367a5e80b3d04d2428ffa76d33f124cf11e8fff2acdaa9b43d545f5c7d661ef2",
-                "sha256:8868bbe3c3c80d42f20156f22e7131d2fb321f5bc86a2a345375c6481a67021d"
+                "sha256:1d7385c7db91728b83efd0ca99a5afb296cab9d0ed8313a45ed8ba17967ecfca",
+                "sha256:440633ddfebcc36264232365d7840a970e75e1018d15b4327d11f91909045fda"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==2.4.0"
+            "markers": "python_version >= '3.7'",
+            "version": "==2.4.1"
         },
         "pluggy": {
             "hashes": [
@@ -487,11 +487,11 @@
         },
         "tomli": {
             "hashes": [
-                "sha256:c6ce0015eb38820eaf32b5db832dbc26deb3dd427bd5f6556cf0acac2c214fee",
-                "sha256:f04066f68f5554911363063a30b108d2b5a5b1a010aa8b6132af78489fe3aade"
+                "sha256:05b6166bff487dc068d322585c7ea4ef78deed501cc124060e0f238e89a9231f",
+                "sha256:e3069e4be3ead9668e21cb9b074cd948f7b3113fd9c8bba083f48247aab8b11c"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.2.2"
+            "version": "==1.2.3"
         },
         "typing-extensions": {
             "hashes": [
