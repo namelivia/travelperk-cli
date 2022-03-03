@@ -121,19 +121,19 @@
         },
         "travelperk-http-python": {
             "hashes": [
-                "sha256:74d3538a543a8d088f4938a3f366a80136b2bb5d26aca933b668a873b1df6029",
-                "sha256:d5ea35e1c1e201237c3c0337e419bb39565be265f5a84ac571868e66cdeb510a"
+                "sha256:48528de0b6e217d6ede2a8ab2c0441d8bfab89043ad86c7f87be927cc2f98456",
+                "sha256:a209533d60b562f69937b3057f74090a6301a844aea32b70a35e0f31e5279452"
             ],
             "index": "pypi",
-            "version": "==1.0.16"
+            "version": "==1.1.0"
         },
         "travelperk-python-api-types": {
             "hashes": [
-                "sha256:6d5045b5461844ed704d2f4e8b56d651d4e7773ebae47bc5c863250f119fcd15",
-                "sha256:725688755aa06096110671e0fd16d2675145de4dbf1631e660445a893c21150b"
+                "sha256:2f64bd7e78702ecea4cd195b48c41ae14c700241a57950d2df370aa9be557abb",
+                "sha256:bc95d1a2f3f12cd8f2660500488170c384367cbcf8fffa37a87d6bde73428808"
             ],
             "markers": "python_version >= '3.6' and python_version < '4'",
-            "version": "==1.0.34"
+            "version": "==1.1.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -231,6 +231,9 @@
             "version": "==2.1.12"
         },
         "coverage": {
+            "extras": [
+                "toml"
+            ],
             "hashes": [
                 "sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9",
                 "sha256:07e6db90cd9686c767dcc593dff16c8c09f9814f5e9c51034066cad3373b914d",
@@ -294,11 +297,11 @@
         },
         "identify": {
             "hashes": [
-                "sha256:7d10baf6ba6f1912a0a49f4c1c2c49fa1718765c3a37d72d13b07779567c5b85",
-                "sha256:e12b2aea3cf108de73ae055c2260783bde6601de09718f6768cf8e9f6f6322a6"
+                "sha256:2986942d3974c8f2e5019a190523b0b0e2a07cb8e89bf236727fb4b26f27f8fd",
+                "sha256:fd906823ed1db23c7a48f9b176a1d71cb8abede1e21ebe614bac7bdd688d9213"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.4.10"
+            "version": "==2.4.11"
         },
         "idna": {
             "hashes": [
@@ -540,11 +543,11 @@
         },
         "virtualenv": {
             "hashes": [
-                "sha256:45e1d053cad4cd453181ae877c4ffc053546ae99e7dd049b9ff1d9be7491abf7",
-                "sha256:e0621bcbf4160e4e1030f05065c8834b4e93f4fcc223255db2a823440aca9c14"
+                "sha256:01f5f80744d24a3743ce61858123488e91cb2dd1d3bdf92adaf1bba39ffdedf0",
+                "sha256:e7b34c9474e6476ee208c43a4d9ac1510b041c68347eabfe9a9ea0c86aa0a46b"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
-            "version": "==20.13.1"
+            "version": "==20.13.2"
         }
     }
 }
