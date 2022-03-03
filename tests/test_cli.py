@@ -26,6 +26,7 @@ class TestCli:
         assert "expenses" in result.output
         assert "scim" in result.output
         assert "travelsafe" in result.output
+        assert "greenperk" in result.output
         assert "trips" in result.output
         assert "users" in result.output
         assert "webhooks" in result.output
@@ -501,4 +502,126 @@ class TestCli:
         assert "Testing webhook response" in result.output
         self.travelperk.webhooks.return_value.webhooks.return_value.test.assert_called_once_with(
             webhook_id
+        )
+
+    # GreenPerk
+    def test_listing_greenperk_operations(self):
+        result = self.runner.invoke(cli, ["greenperk"])
+        assert result.exit_code == 0
+        assert "flight-emissions" in result.output
+        assert "train-emissions" in result.output
+        assert "car-emissions" in result.output
+        assert "hotel-emissions" in result.output
+
+    @patch("travelperk_cli.greenperk.commands.get_backend")
+    def test_getting_flight_emissions(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.greenperk.return_value.greenperk.return_value.flight_emissions.return_value = (
+            "Flight emissions"
+        )
+        origin = "BCN"
+        destination = "LHR"
+        cabin_class = "economy"
+        airline_code = "BA"
+        result = self.runner.invoke(
+            cli,
+            [
+                "greenperk",
+                "flight-emissions",
+                "--origin",
+                origin,
+                "--destination",
+                destination,
+                "--cabin_class",
+                cabin_class,
+                "--airline_code",
+                airline_code,
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Flight emissions" in result.output
+        self.travelperk.greenperk.return_value.greenperk.return_value.flight_emissions.assert_called_once_with(
+            origin, destination, cabin_class, airline_code
+        )
+
+    @patch("travelperk_cli.greenperk.commands.get_backend")
+    def test_getting_train_emissions(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.greenperk.return_value.greenperk.return_value.train_emissions.return_value = (
+            "Train emissions"
+        )
+        origin_id = "c44ba069-4109-4b40-815c-bf519c2c2844"
+        destination_id = "637d125e-9d00-478a-822c-e60c6e219227"
+        vendor = "eurostar"
+        result = self.runner.invoke(
+            cli,
+            [
+                "greenperk",
+                "train-emissions",
+                "--origin_id",
+                origin_id,
+                "--destination_id",
+                destination_id,
+                "--vendor",
+                vendor,
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Train emissions" in result.output
+        self.travelperk.greenperk.return_value.greenperk.return_value.train_emissions.assert_called_once_with(
+            origin_id, destination_id, vendor
+        )
+
+    @patch("travelperk_cli.greenperk.commands.get_backend")
+    def test_getting_car_emissions(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.greenperk.return_value.greenperk.return_value.car_emissions.return_value = (
+            "Car emissions"
+        )
+        acriss_code = "MCFD"
+        num_days = "2"
+        distance_per_day = "100"
+        result = self.runner.invoke(
+            cli,
+            [
+                "greenperk",
+                "car-emissions",
+                "--acriss_code",
+                acriss_code,
+                "--num_days",
+                num_days,
+                "--distance_per_day",
+                distance_per_day,
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Car emissions" in result.output
+        self.travelperk.greenperk.return_value.greenperk.return_value.car_emissions.assert_called_once_with(
+            acriss_code, num_days, distance_per_day
+        )
+
+    @patch("travelperk_cli.greenperk.commands.get_backend")
+    def test_getting_hotel_emissions(self, get_backend_mock):
+        get_backend_mock.return_value = self.travelperk
+        self.travelperk.greenperk.return_value.greenperk.return_value.hotel_emissions.return_value = (
+            "Hotel emissions"
+        )
+        country_code = "ES"
+        num_nights = "2"
+        result = self.runner.invoke(
+            cli,
+            [
+                "greenperk",
+                "hotel-emissions",
+                "--country_code",
+                country_code,
+                "--num_nights",
+                num_nights,
+            ],
+        )
+        assert result.exit_code == 0
+        assert "Hotel emissions" in result.output
+        self.travelperk.greenperk.return_value.greenperk.return_value.hotel_emissions.assert_called_once_with(
+            country_code,
+            num_nights,
         )

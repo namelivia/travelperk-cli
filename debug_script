@@ -72,3 +72,32 @@ pipenv run python cli.py trips bookings > /tmp/all_bookings
 #users
 echo 'all users'
 pipenv run python cli.py users all > /tmp/all_users
+
+#greenperk
+echo 'flight emissions'
+pipenv run python cli.py greenperk flight-emissions \
+    --origin BCN \
+    --destination LHR \
+    --cabin_class economy \
+    --airline_code BA \
+  > /tmp/flight_emissions
+
+echo 'train emissions'
+pipenv run python cli.py greenperk train-emissions \
+    --origin_id c44ba069-4109-4b40-815c-bf519c2c2844 \
+    --destination_id 637d125e-9d00-478a-822c-e60c6e219227 \
+    --vendor eurostar \
+  > /tmp/train_emissions
+
+echo 'car emissions'
+pipenv run python cli.py greenperk car-emissions \
+    --acriss_code MCFD \
+    --num_days 2 \
+    --distance_per_day 100 \
+  > /tmp/car_emissions
+
+echo 'hotel emissions'
+pipenv run python cli.py greenperk hotel-emissions \
+    --country_code ES \
+    --num_nights 2 \
+  > /tmp/hotel_emissions
